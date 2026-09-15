@@ -1,37 +1,99 @@
 <!DOCTYPE html>
-<html>
+<!-- ============================================================
+     TEMPLATE — Página pessoal com CSS Grid
+     Programação Web / Introdução às Tecnologias Web — IFAL
+     COMO USAR:
+     1) Copie ESTE index.html para o seu repositório (não mude a estrutura).
+     2) Escolha UM dos 3 temas de CSS (tema-1-indigo.css, tema-2-escuro.css
+        ou tema-3-editorial.css) e salve-o no seu projeto como  estilo.css
+        (é o nome que este HTML carrega logo abaixo).
+     3) Troque os textos marcados com "TROQUE" pelo seu conteúdo.
+     IMPORTANTE: o LAYOUT é feito com CSS Grid e é o mesmo nos 3 temas.
+     Você escolhe a APARÊNCIA (fonte, cores, bordas), não o layout.
+     ============================================================ -->
+<html lang="pt-BR">
+
 <head>
-   <meta charset="UTF-8">
-   <title>Minha Página Pessoal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Pessoal — Seu Nome</title>
+  <!-- Salve o tema escolhido como "estilo.css" (mesma pasta deste arquivo) -->
+  <link rel="stylesheet" href="estilo.css">
 </head>
+
 <body>
-     <h1>Amilton Sabino da Silva Santos</h1>
-   <h2>Desenvolvimento de Sistemas 921-c</h2>
-   <img src="eu.jpg" alt="minha foto" width="250" height="250">
-   <h3>Data de Nascinmento 19/06/2010</h3>
-   <p>No meu tempo livre, gosto de assistir a filmes e séries de TV ou ouvir música.</p>
-   <ul>
-    <h4>meus conhecientos dentro do curso</h4>
-<li>Desenvolvimento web Básico</li>
-<li>lógica da programaçao</li>
-<li>estrutura e Estilizaçao</li>
-<li>Estruturas basicas de controles</li>
-<li>Hardware e arquitetura de computadores</li>
-<li>softwere e Sistemas</li>
- </ul>
- <a href="https://www2.ifal.edu.br/campus/maceio/ensino/cursos/tecnicos-integrados/desenvolvimento-de-sistemas">link do curso</a>
-<p>O curso de Desenvolvimento de Sistemas do IFAL em Maceió é um curso técnico integrado ao ensino médio que prepara os alunos para o mercado de trabalho em diversas áreas. Os alunos aprendem a desenvolver sistemas computacionais, modelar e implementar bancos de dados, utilizar linguagens de programação específicas, realizar testes de programas, e manter registros para análise e refinamento de resultados. O curso também envolve a elaboração de documentação do sistema e a aplicação de princípios de análise de dados. Os graduados podem atuar em empresas de desenvolvimento de sistemas, departamentos de desenvolvimento de sistemas em organizações governamentais e não governamentais, ou se tornarem profissionais autônomos.</p>
-   <h3>Capítulo 4 — Atividades Práticas<h3>
-         <a href="cp1_/tabela-básica-de-horários.html">atv1</a><br>
-         <a href="cp1_/tabela-semática-com-mesclagem.html">atv2</a><br>
-         <a href="listas-avançadas-e-glossário-tecnico.html">atv3</a><br>
-      <h3>Atividades Práticas — Capítulo 5: Formulários HTML<h3>
-         <a href="untitled7.html">atv1</a><br>
-         <a href="untitled8.html">atv2</a><br>
-      <h3>Atividade Prática em Sala  — Fundamentos de CSS 1<h3>
-      <a href="untitled6.html">atv1</a><br>
-      <h3>Atividade Prática CSS 02 — Refatoração de Seletores e Unidades CSS.md<h3>
-           <a href="untitled.html">atv1</a><br> 
+  <div class="pagina">
+
+    <!-- ====== CABEÇALHO — TROQUE pelo seu nome e sua frase ====== -->
+    <header class="cabecalho">
+      <h1>Seu Nome</h1>
+      <p>Estudante de Sistemas de Informação · IFAL</p>
+      <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <!-- ====== CONTEÚDO PRINCIPAL ====== -->
+    <main class="principal">
+      <section id="sobre" class="cartao">
+        <h2>Sobre mim</h2>
+        <!-- TROQUE por uma breve apresentação sua -->
+        <p>Escreva aqui um parágrafo se apresentando: quem você é, o que estuda
+          e o que gosta de fazer na área de tecnologia.</p>
+      </section>
+
+      <section id="projetos" class="cartao">
+        <h2>Projetos</h2>
+        <!-- Galeria com Grid: cada .projeto é um card; adicione/remova à vontade -->
+        <div class="projetos">
+          <article class="projeto">
+            <h3>Projeto 1</h3>
+            <p>O que é e o que você fez. TROQUE por um projeto seu.</p>
+          </article>
+          <article class="projeto">
+            <h3>Projeto 2</h3>
+            <p>Descrição curta do projeto.</p>
+          </article>
+          <article class="projeto">
+            <h3>Projeto 3</h3>
+            <p>Descrição curta do projeto.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- ====== BARRA LATERAL ====== -->
+    <aside class="lateral">
+      <section class="cartao">
+        <h2>Habilidades</h2>
+        <!-- TROQUE pelas suas habilidades -->
+        <ul class="habilidades">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Grid</li>
+          <li>JavaScript</li>
+        </ul>
+      </section>
+
+      <section id="contato" class="cartao">
+        <h2>Contato</h2>
+        <!-- TROQUE pelos seus links -->
+        <ul class="contato">
+          <li>✉️ <a href="mailto:voce@exemplo.com">voce@exemplo.com</a></li>
+          <li>🐙 <a href="https://github.com/SEU-USUARIO">github.com/SEU-USUARIO</a></li>
+        </ul>
+      </section>
+    </aside>
+
+    <!-- ====== RODAPÉ — TROQUE o nome ====== -->
+    <footer class="rodape">© 2026 Seu Nome · feito com HTML + CSS Grid</footer>
+
+  </div>
 </body>
+
 </html>
 
+
+         
