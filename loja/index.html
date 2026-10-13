@@ -1,178 +1,195 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"rel="stylesheet">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minha Loja</title>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-<div class="container">
-<a class="navbar-brand" href="#">Minha Loja</a>
-
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="menu">
- <ul class="navbar-nav me-auto">
-    <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">Ofertas</a></li>
- </ul>
- <form class="d-flex" role="search">
-<input class="form-control me-2" type="search" placeholder="Buscar produtos...">
-<button class="btn btn-outline-primary">Buscar</button>
-    </form>
-   </div>
-  </div>
- </nav>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Store</title>
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#222;background:#fff}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    .aviso{background:#222;color:#fff;text-align:center;padding:9px;font-size:13px}
+    .container{width:min(1200px,92%);margin:auto}
+    header{background:#fff;border-bottom:1px solid #ddd}
+    .topo{min-height:70px;display:flex;align-items:center;gap:24px}
+    .logo{font-size:24px;font-weight:900;white-space:nowrap}
+    .logo span{color:#e53950}
+    .menu-check{display:none}
+    .menu-icone{display:none;cursor:pointer;font-size:25px;border:1px solid #ccc;border-radius:5px;padding:5px 10px}
+    nav{display:flex;align-items:center;gap:24px;flex:1}
+    nav a{font-size:14px}
+    nav a:hover{color:#e53950}
+    .busca{display:flex;gap:6px;max-width:390px;flex:1}
+    .busca input{width:100%;min-width:0;border:1px solid #bbb;border-radius:5px;padding:10px}
+    .btn{border:0;border-radius:5px;padding:10px 15px;background:#252525;color:white;cursor:pointer;display:inline-block;text-align:center}
+    .btn:hover{background:#444}
+    .carrinho-link{white-space:nowrap;border:1px solid #ccc;padding:8px 12px;border-radius:5px}
+    .hero{position:relative;overflow:hidden;background:#eee}
+    .slides{display:flex;width:300%;animation:deslizar 15s infinite}
+    .slide{width:33.333%;height:300px;position:relative;flex-shrink:0}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .legenda{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;text-shadow:0 2px 5px #222;background:#0003;padding:20px}
+    .legenda h1{font-size:clamp(24px,4vw,42px);margin:0 0 8px}
+    .legenda p{margin:0 0 16px}
+    @keyframes deslizar{0%,28%{transform:translateX(0)}33%,61%{transform:translateX(-33.333%)}66%,94%{transform:translateX(-66.666%)}100%{transform:translateX(0)}}
+    section{padding:28px 0}
+    .titulo{font-size:23px;margin:0 0 16px}
+    .categorias{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+    .categoria{border:1px solid #ccc;border-radius:6px;text-align:center;padding:10px;transition:transform .2s}
+    .categoria:hover{transform:translateY(-3px)}
+    .categoria img{width:100%;height:90px;object-fit:cover;border-radius:4px}
+    .categoria strong{display:block;margin-top:8px;font-size:14px}
+    .produtos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .produto{border:1px solid #ccc;border-radius:7px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+    .produto img{width:100%;height:235px;object-fit:cover}
+    .etiqueta{position:absolute;top:10px;left:10px;background:#e53950;color:#fff;border-radius:20px;padding:5px 9px;font-size:12px}
+    .detalhes{padding:13px;display:flex;flex-direction:column;align-items:stretch;flex:1}
+    .detalhes h3{font-size:17px;margin:0 0 8px}
+    .antigo{color:#888;text-decoration:line-through;font-size:13px;margin:0 0 4px}
+    .preco{font-size:19px;font-weight:bold;margin:0 0 12px}
+    .detalhes .btn{margin-top:auto;font-size:13px}
+    .banners{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .banners img{width:100%;height:160px;object-fit:cover;border-radius:5px;display:block}
+    .beneficios{background:#f1f1f1}
+    .beneficios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .beneficio{display:flex;align-items:center;justify-content:center;gap:12px;font-weight:bold;font-size:14px}
+    .beneficio span{width:42px;height:42px;display:grid;place-items:center;border:1px solid #aaa;background:#fff;border-radius:50%;font-size:20px;flex-shrink:0}
+    .newsletter{text-align:center}
+    .newsletter h2{font-size:21px;margin:0 0 14px}
+    .newsletter form{display:flex;justify-content:center;gap:6px}
+    .newsletter input{width:min(400px,65%);padding:11px;border:1px solid #aaa;border-radius:5px}
+    footer{background:#ddd;padding:26px 0 12px}
+    .rodape{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    footer h3{font-size:15px;margin:0 0 12px}
+    footer a{display:block;color:#555;font-size:13px;margin:8px 0}
+    .redes span,.pagamentos span{display:inline-block;border:1px solid #999;border-radius:4px;padding:6px 8px;margin:2px;background:#f7f7f7;font-size:12px}
+    .copyright{border-top:1px solid #bbb;margin-top:20px;padding-top:12px;text-align:center;font-size:11px;color:#555}
+    .nota{font-size:12px;color:#777;text-align:center;margin-top:10px}
+    @media(max-width:991px){
+      .topo{flex-wrap:wrap;gap:12px;padding:12px 0}
+      .menu-icone{display:block;margin-left:auto}
+      .carrinho-link{order:2}
+      .menu-check:checked ~ nav{display:flex}
+      nav{display:none;order:4;flex-basis:100%;align-items:stretch;flex-direction:column;gap:0;border-top:1px solid #eee;padding-top:8px}
+      nav a{padding:10px 4px}
+      .busca{order:5;flex-basis:100%;max-width:none}
+      .categorias{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .produtos{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .slide{height:260px}
+      .beneficios-grid{grid-template-columns:1fr}
+      .beneficio{justify-content:flex-start}
+    }
+    @media(max-width:575px){
+      .container{width:92%}
+      .logo{font-size:21px}
+      .slide{height:190px}
+      .legenda h1{font-size:24px}
+      .legenda p{font-size:13px}
+      .categorias{gap:8px}
+      .categoria{padding:6px}
+      .categoria img{height:62px}
+      .categoria strong{font-size:12px}
+      .produtos{grid-template-columns:1fr}
+      .produto{max-width:100%}
+      .produto img{height:250px}
+      .banners{grid-template-columns:1fr}
+      .banners img{height:130px}
+      .newsletter form{flex-direction:column}
+      .newsletter input{width:100%}
+      .rodape{grid-template-columns:1fr;gap:8px}
+      .rodape section{padding:8px 0;border-bottom:1px solid #bbb}
+      .rodape h3{margin-bottom:5px}
+      .rodape a{margin:5px 0}
+    }
+  </style>
 </head>
 <body>
-  <div class="bg-primary text-white text-center py-2">Frete grátis acima de R$ 199</div>
-<!-- tudo da página vai aqui dentro -->
-  <div 
-    
-    class="container"><h2 class="mt-4">Categorias</h2>
-<div class="row g-3">
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 1</div>
-</div>
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 2</div>
-</div>
-  <h2 class="mt-4">Categorias</h2>
-<div class="row g-3">
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 1</div>
-</div>
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 2</div>
-</div>
-<!-- repita até ter 6 categorias -->
-</div>
-  <h2 class="mt-4">Categorias</h2>
-<div class="row g-3">
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 1</div>
-</div>
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 2</div>
-</div>
-<!-- repita até ter 6 categorias -->
-</div>
-  <h2 class="mt-4">Categorias</h2>
-<div class="row g-3">
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 1</div>
-</div>
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 2</div>
-</div>
-<!-- repita até ter 6 categorias -->
-</div>
-  <h2 class="mt-4">Categorias</h2>
-<div class="row g-3">
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 1</div>
-</div>
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 2</div>
-</div>
-<!-- repita até ter 6 categorias -->
-</div>
-  <h2 class="mt-4">Categorias</h2>
-<div class="row g-3">
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 1</div>
-</div>
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 2</div>
-</div>
-<!-- repita até ter 6 categorias -->
-</div>
-  <h2 class="mt-4">Categorias</h2>
-<div class="row g-3">
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 1</div>
-</div>
-<div class="col-lg-2 col-4">
-<div class="card text-center p-2">Categoria 2</div>
-</div>
-<!-- repita até ter 6 categorias -->
-</div>
-    <!-- carrossel, categorias, destaques, banners, benefícios vão AQUI dentro -->
-    <h2 class="mt-4">Destaques</h2>
-<div class="row g-3">
-<div class="col-lg-3 col-md-6">
-<div class="card h-100">
-<span class="badge text-bg-danger position-absolute m-2">Promoção</span>
-<img src="https://placehold.co/400x300" class="card-img-top" alt="Produto">
-<div class="card-body">
-<h5 class="card-title">Produto 1</h5>
-<p class="card-text">
-<span class="text-muted text-decoration-line-through">R$ 99,00</span>
-<strong class="text-danger">R$ 79,00</strong>
-</p>
-<button class="btn btn-primary w-100">Adicionar ao carrinho</button>
-</div>
-</div>
-</div>
-<!-- repita a coluna col-lg-3 col-md-6 para ter 4 produtos -->
-</div>
-  <h2 class="mt-4">Destaques</h2>
-<div class="row g-3">
-<div class="col-lg-3 col-md-6">
-<div class="card h-100">
-<span class="badge text-bg-danger position-absolute m-2">Promoção</span>
-<img src="https://placehold.co/400x300" class="card-img-top" alt="Produto">
-<div class="card-body">
-<h5 class="card-title">Produto 1</h5>
-<p class="card-text">
-<span class="text-muted text-decoration-line-through">R$ 99,00</span>
-<strong class="text-danger">R$ 79,00</strong>
-</p>
-<button class="btn btn-primary w-100">Adicionar ao carrinho</button>
-</div>
-</div>
-</div>
-<!-- repita a coluna col-lg-3 col-md-6 para ter 4 produtos -->
-</div>
-  <h2 class="mt-4">Destaques</h2>
-<div class="row g-3">
-<div class="col-lg-3 col-md-6">
-<div class="card h-100">
-<span class="badge text-bg-danger position-absolute m-2">Promoção</span>
-<img src="https://placehold.co/400x300" class="card-img-top" alt="Produto">
-<div class="card-body">
-<h5 class="card-title">Produto 1</h5>
-<p class="card-text">
-<span class="text-muted text-decoration-line-through">R$ 99,00</span>
-<strong class="text-danger">R$ 79,00</strong>
-</p>
-<button class="btn btn-primary w-100">Adicionar ao carrinho</button>
-</div>
-</div>
-</div>
-<!-- repita a coluna col-lg-3 col-md-6 para ter 4 produtos -->
-</div>
-  <h2 class="mt-4">Destaques</h2>
-<div class="row g-3">
-<div class="col-lg-3 col-md-6">
-<div class="card h-100">
-<span class="badge text-bg-danger position-absolute m-2">Promoção</span>
-<img src="https://placehold.co/400x300" class="card-img-top" alt="Produto">
-<div class="card-body">
-<h5 class="card-title">Produto 1</h5>
-<p class="card-text">
-<span class="text-muted text-decoration-line-through">R$ 99,00</span>
-<strong class="text-danger">R$ 79,00</strong>
-</p>
-<button class="btn btn-primary w-100">Adicionar ao carrinho</button>
-</div>
-</div>
-</div>
-<!-- repita a coluna col-lg-3 col-md-6 para ter 4 produtos -->
-</div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="aviso">Frete grátis acima de R$ 199</div>
+  <header>
+    <div class="container topo">
+      <a class="logo" href="#">FASHION<span>.</span></a>
+      <input class="menu-check" type="checkbox" id="menu-toggle">
+      <label class="menu-icone" for="menu-toggle" aria-label="Abrir ou fechar menu">☰</label>
+      <a class="carrinho-link" href="#informacoes-carrinho" aria-label="Ver informações do carrinho">🛒 Carrinho</a>
+      <nav aria-label="Menu principal">
+        <a href="#">Início</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#destaques">Ofertas</a>
+      </nav>
+      <form class="busca" action="#destaques" method="get">
+        <input type="search" name="busca" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+        <button class="btn" type="submit">Buscar</button>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero" aria-label="Banners promocionais">
+      <div class="slides">
+        <div class="slide"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=80" alt="Pessoas escolhendo roupas"><div class="legenda"><h1>Nova coleção</h1><p>Descubra seu próximo look</p><a class="btn" href="#destaques">Comprar agora</a></div></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1600&q=80" alt="Coleção de moda"><div class="legenda"><h1>Estilo para todos os dias</h1><p>Peças que combinam com você</p><a class="btn" href="#destaques">Ver produtos</a></div></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80" alt="Araras com roupas"><div class="legenda"><h1>Ofertas especiais</h1><p>Renove seu guarda-roupa</p><a class="btn" href="#destaques">Conferir ofertas</a></div></div>
+      </div>
+    </div>
+
+    <section class="container" id="categorias">
+      <h2 class="titulo">Categorias</h2>
+      <div class="categorias">
+        <a class="categoria" href="#destaques"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=300&q=75" alt="Moda feminina"><strong>Feminino</strong></a>
+        <a class="categoria" href="#destaques"><img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=300&q=75" alt="Moda masculina"><strong>Masculino</strong></a>
+        <a class="categoria" href="#destaques"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=300&q=75" alt="Vestidos"><strong>Vestidos</strong></a>
+        <a class="categoria" href="#destaques"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=300&q=75" alt="Bolsas"><strong>Bolsas</strong></a>
+        <a class="categoria" href="#destaques"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=75" alt="Relógios"><strong>Relógios</strong></a>
+        <a class="categoria" href="#destaques"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=300&q=75" alt="Acessórios"><strong>Acessórios</strong></a>
+      </div>
+    </section>
+
+    <section class="container" id="destaques">
+      <h2 class="titulo">Destaques</h2>
+      <div class="produtos">
+        <article class="produto"><span class="etiqueta">Promoção</span><img src="https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=600&q=80" alt="Jaqueta jeans"><div class="detalhes"><h3>Jaqueta Jeans</h3><p class="antigo">R$ 129,00</p><p class="preco">R$ 79,00</p><a class="btn" href="#informacoes-carrinho">Adicionar ao carrinho</a></div></article>
+        <article class="produto"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80" alt="Bolsa feminina"><div class="detalhes"><h3>Bolsa Feminina</h3><p class="preco">R$ 89,00</p><a class="btn" href="#informacoes-carrinho">Adicionar ao carrinho</a></div></article>
+        <article class="produto"><span class="etiqueta">Promoção</span><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80" alt="Vestido casual"><div class="detalhes"><h3>Vestido Casual</h3><p class="antigo">R$ 119,00</p><p class="preco">R$ 69,00</p><a class="btn" href="#informacoes-carrinho">Adicionar ao carrinho</a></div></article>
+        <article class="produto"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Tênis urbano"><div class="detalhes"><h3>Tênis Urbano</h3><p class="preco">R$ 149,00</p><a class="btn" href="#informacoes-carrinho">Adicionar ao carrinho</a></div></article>
+      </div>
+      <p class="nota" id="informacoes-carrinho">Demonstração visual: para adicionar produtos e calcular o total automaticamente, é necessário JavaScript ou um sistema de loja conectado.</p>
+    </section>
+
+    <section class="container">
+      <div class="banners">
+        <a href="#destaques"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80" alt="Banner promocional A"></a>
+        <a href="#destaques"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80" alt="Banner promocional B"></a>
+      </div>
+    </section>
+
+    <div class="beneficios"><div class="container"><section class="beneficios-grid">
+      <div class="beneficio"><span>🚚</span>Entrega para todo o Brasil</div>
+      <div class="beneficio"><span>🔒</span>Pagamento seguro</div>
+      <div class="beneficio"><span>↩</span>Troca grátis em 30 dias</div>
+    </section></div></div>
+
+    <section class="container newsletter">
+      <h2>Receba nossas ofertas</h2>
+      <form action="#" method="get">
+        <input type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" required>
+        <button class="btn" type="submit">Assinar</button>
+      </form>
+      <p class="nota">Exemplo visual de inscrição; o envio real exige um serviço conectado.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="rodape">
+        <section><h3>Institucional</h3><a href="#">Sobre nós</a><a href="#">Nossas lojas</a><a href="#">Política de privacidade</a></section>
+        <section><h3>Ajuda</h3><a href="#">Fale conosco</a><a href="#">Trocas e devoluções</a><a href="#">Perguntas frequentes</a></section>
+        <section class="redes"><h3>Redes sociais</h3><a href="https://instagram.com">Instagram</a><a href="https://facebook.com">Facebook</a></section>
+        <section class="pagamentos"><h3>Formas de pagamento</h3><span>Pix</span><span>Cartão</span><span>Boleto</span></section>
+      </div>
+      <div class="copyright">© 2026 Fashion Store — CNPJ 00.000.000/0000-00</div>
+    </div>
+  </footer>
 </body>
 </html>
